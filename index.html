@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data Form</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Kufam:wght@400..900&display=swap" rel="stylesheet">
+
+    <style>
+       
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        
+        body {
+            font-family: 'Inter', sans-serif; 
+        }
+
+        section {
+            height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; 
+            background-color: rgb(228, 224, 225); 
+            padding: 20px;
+        }
+
+        
+        .container {
+            width: 90%; 
+            max-width: 500px; 
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 3px 3px 5px 0px rgba(53, 53, 53, 0.433);
+            background-color: rgb(214, 192, 179); 
+        }
+
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            direction: rtl;
+        }
+
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: "Kufam", sans-serif; 
+            color: rgb(73, 54, 40);
+            font-size: 1.8em;
+        }
+
+        
+        input {
+            padding: 12px 15px; 
+            margin-bottom: 15px; 
+            border: 1px solid #ccc;
+            outline: none;
+            font-family: "Kufam", sans-serif; 
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        
+        input:focus {
+            background-color: white;
+            border: 2px solid rgb(73, 54, 40);
+        }
+
+       
+        button {
+            padding: 12px 20px; 
+            font-family: "Kufam", sans-serif;
+            font-size: 16px; 
+            font-weight: 600;
+            border-radius: 10px;
+            border: none;
+            background-color: rgb(73, 54, 40); 
+            color: #FFFDF6;
+            transition: background-color .3s ease, color .3s ease; 
+            cursor: pointer; 
+        }
+
+    
+        button:hover {
+            background-color: #FFFDF6; 
+            color: rgb(73, 54, 40); 
+        }
+
+        #msg {
+            margin-top: 25px;
+            color: rgb(73, 54, 40);
+            direction: rtl;
+            text-align: center; 
+            font-size: 1.1em; 
+            line-height: 1.5; 
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 600px) {
+            .container {
+                width: 95%; /* Even wider on very small screens */
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            input, button {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+
+            #msg {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <form id="form">
+                <h1>أدخل بياناتك</h1>
+
+                <input type="text" id="userName" placeholder="اسمك">
+                <input type="number" id="userAge" placeholder="سنك">
+                <input type="text" id="userHobby" placeholder="هوايتك">
+
+                <button id="submitBtn" type="submit">اعرض الرسالة</button>
+            </form>
+
+            <h1 id="msg"></h1>
+        </div>
+    </section>
+    <script>
+        // Get references to the input fields, button, and message display
+        let userNameInput = document.getElementById("userName");
+        let userAgeInput = document.getElementById("userAge");
+        let userHobbyInput = document.getElementById("userHobby");
+        let submitBtn = document.getElementById("submitBtn");
+        let msg = document.getElementById("msg");
+
+        // Add an event listener to the submit button
+        submitBtn.addEventListener('click', function (event) {
+            // Prevent the default form submission behavior (which would reload the page)
+            event.preventDefault();
+
+            // Get the trimmed values from the input fields
+            let userName = userNameInput.value.trim();
+            let userAge = userAgeInput.value.trim();
+            let userHobby = userHobbyInput.value.trim();
+
+            // Check if any of the fields are empty
+            if (userName === "" || userAge === "" || userHobby === "") {
+                // If any field is empty, display an error message
+                msg.textContent = 'الرجاء إدخال جميع الحقول';
+            } else {
+                // If all fields are filled, construct and display the personalized message
+                msg.textContent = `أهلاً يا ${userName}, عمرك ${userAge} سنة, وهوايتك المفضلة هي ${userHobby}`;
+            }
+        });
+    </script>
+</body>
+</html>
+
